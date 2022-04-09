@@ -1,1 +1,1 @@
-### Project Created to test Jenkins Pipeline to deploy the Maven Build Java web app in a Container
+### Project Created to test a Jenkins Pipeline to deploy Maven Build Java web app in a Container
