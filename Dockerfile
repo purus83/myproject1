@@ -21,7 +21,7 @@ WORKDIR /opt/tomcat
 RUN wget -q https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz; tar -xzf apache-tomcat-10.0.20.tar.gz; rm -rf apache-tomcat-10.0.20.tar.gz
 
 ##Copying APPLICATION(WAR file) to webapps directory of tomcat
-COPY trucks.war /opt/tomcat/apache-tomcat-10.0.20/webapps/
+COPY trucks/target/trucks.war /opt/tomcat/apache-tomcat-10.0.20/webapps/
 
 ##Entrypoint to start Tomcat service
 ENTRYPOINT ["/opt/tomcat/apache-tomcat-10.0.20/bin/catalina.sh","run"]
