@@ -44,5 +44,10 @@ pipeline {
                     }
                 }
             }
+	     stage('Docker Image Build'){
+		steps{
+			sh 'docker build -t myproject1:${BUILD_NUMBER} .
+		}
+	    }
          }   
 }
