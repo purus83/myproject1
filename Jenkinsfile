@@ -49,7 +49,7 @@ pipeline {
 			sh 'docker build -t purusothaman/myproject1:${BUILD_NUMBER} .'
 		}
 	    }
-	    stage('Docker Image Push to Docker Hub'){
+	    stage('Docker Image Push to DockerHub'){
 		steps{
 			withCredentials([usernamePassword(credentialsId: 'c62aad00-342d-40e3-b0f6-4f9a8c9a4252', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
 			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
@@ -61,6 +61,16 @@ pipeline {
 			sh 'docker image rmi purusothaman/myproject1:${BUILD_NUMBER}'
 		}
 	    }
-			
+	    stage('Pulling the Image from DockerHub'){
+		steps{
+			sh 'docker pull  purusothaman/myproject1:${BUILD_NUMBER}'
+		}	
+	    }
+		
+	   stage('Starting Container with the Latest Image'){
+		steps{
+			sh 'docker run -d -P --name=myproject1-${BUILD_NUMBER}  purusothaman/myproject1:${BUILD_NUMBER}'
+		} 
+           }		
          }   	      
 }
