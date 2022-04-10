@@ -7,13 +7,6 @@ pipeline {
         }
        
         stages{
-            stage('GIT Clone'){
-                steps{
-                    git branch: 'main', url: 'https://github.com/purus83/myproject1.git'    
-                   
-            
-                }    
-            }
             stage('Validate'){
                 steps{
                     dir('trucks'){
