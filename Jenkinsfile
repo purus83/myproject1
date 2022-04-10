@@ -67,10 +67,16 @@ pipeline {
 		}	
 	    }
 		
-	   stage('Starting Container with the Latest Image'){
+	    stage('Starting Container with the NEW Image'){
 		steps{
 			sh 'docker run -d -P --name=myproject1-${BUILD_NUMBER}  purusothaman/myproject1:${BUILD_NUMBER}'
 		} 
-           }		
+            }		
+	   
+	    stage('List of Containers based on the NEW Image'){
+		steps{
+			sh 'docker container ls --filter ancestor=purusothaman/myproject1:${BUILD_NUMBER}'
+		}
+	    }	
          }   	      
 }
