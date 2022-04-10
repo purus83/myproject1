@@ -55,7 +55,12 @@ pipeline {
 			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 			sh 'docker push purusothaman/myproject1:${BUILD_NUMBER}' }
 		}
-	    }	
+	    }
+	    stage('Deleting Image in Local System'){
+		steps{
+			sh 'docker image rmi purusothaman/myproject1:${BUILD_NUMBER}'
+		}
+	    }
+			
          }   	      
-	
 }
