@@ -44,10 +44,18 @@ pipeline {
                     }
                 }
             }
-	     stage('Docker Image Build'){
+	    stage('Docker Image Build'){
 		steps{
 			sh 'docker build -t purusothaman/myproject1:${BUILD_NUMBER} .'
 		}
 	    }
-         }   
+	    stage('Docker Image Push to Docker Hub'){
+		steps{
+			withCredentials([usernamePassword(credentialsId: 'c62aad00-342d-40e3-b0f6-4f9a8c9a4252', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
+			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+			sh 'docker push purusothaman/myproject1:${BUILD_NUMBER}'
+		}
+	    }	
+         }   	      
+	
 }
