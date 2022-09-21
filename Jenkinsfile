@@ -58,7 +58,7 @@ pipeline {
 	    }
 	    stage('Deleting Image in Local System'){
 		steps{
-			sh 'docker image rmi purusothaman/myproject1:${BUILD_NUMBER}'
+			sh 'docker image rm purusothaman/myproject1:${BUILD_NUMBER}'
 		}
 	    }
 	    stage('Pulling the Image from DockerHub'){
